@@ -4,11 +4,13 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import page.AlertsPage;
 import page.DropdownPage;
+import page.LoginPage;
 import page.TextBoxPage;
 
 public class Steps {
@@ -16,6 +18,7 @@ public class Steps {
     TextBoxPage textBoxPage;
     DropdownPage dropdownPage;
     AlertsPage alertsPage;
+    LoginPage loginPage;
 
     Playwright playwright = Playwright.create();
     BrowserType chrome = playwright.chromium();
@@ -29,6 +32,7 @@ public class Steps {
         textBoxPage = new TextBoxPage(page);
         dropdownPage = new DropdownPage(page);
         alertsPage = new AlertsPage(page);
+        loginPage = new LoginPage(page);
     }
 
     @When("User complete all the fields with data: {string}, {string}, {string}, {string}")
@@ -66,6 +70,12 @@ public class Steps {
     @And("User click on third Alert")
     public void userClickOnThirdAlert(){
         alertsPage.userClickOnThirdAlert();
+    }
+
+
+    @And("User complete the registration form with data: {string}, {string}, {string}, {string}")
+    public void completeRegistrationForm(String nameF, String nameL, String email, String phonne) throws InterruptedException {
+        loginPage.userCompleteRegistrationForm(nameF, nameL, email, phonne);
     }
 
 }

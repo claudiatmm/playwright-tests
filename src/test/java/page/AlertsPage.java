@@ -39,7 +39,7 @@ public class AlertsPage {
             dialog.accept();
         });
         page.locator(timerAlertButton).click();
-//        page.waitForSelector("dialog");
+        page.waitForSelector("dialog");
 
     }
 
