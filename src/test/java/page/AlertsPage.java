@@ -22,7 +22,6 @@ public class AlertsPage {
     }
 
     public void userClickOnFirstAlert() throws InterruptedException {
-
         page.onDialog(dialog -> {
             System.out.println("Here is your alert message 1: " + dialog.message());
             dialog.accept();
@@ -46,8 +45,8 @@ public class AlertsPage {
 
     public void userClickOnThirdAlert(){
         page.onDialog(dialog -> {
-            dialog.accept();
             System.out.println("Here is your alert message 3: " + dialog.message());
+            dialog.accept();
         });
         page.locator(confirmButton).click();
         assertThat(page.locator("id=confirmResult")).containsText("You selected Ok");
