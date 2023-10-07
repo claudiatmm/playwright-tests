@@ -34,12 +34,13 @@ public class AlertsPage {
     public void userClickOnSecondAlert() throws InterruptedException {
         page.onDialog(dialog -> {
             System.out.println("Here is your alert message 2: " + dialog.message());
-//            assertEquals("This alert appeared", dialog.message());
+            assertEquals("This alert appeared", dialog.message());
             dialog.accept();
         });
         page.locator(timerAlertButton).click();
-        page.waitForSelector("dialog");
-
+        page.waitForTimeout(5000);
+//        page.waitForSelector("dialog");
+        System.out.println("Here is your alert message 2");
     }
 
 
@@ -59,6 +60,5 @@ public class AlertsPage {
             });
             page.locator(promtButton).click();
     }
-
 
 }
