@@ -1,6 +1,8 @@
 package page;
 
 import com.microsoft.playwright.Page;
+import io.cucumber.datatable.internal.difflib.StringUtills;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.time.Month;
 import java.util.Locale;
@@ -61,7 +63,8 @@ public class DatePickerPage {
             currentYear = Integer.parseInt(page.locator(year).textContent());
         }
 
-//        assertEquals((monthInputAtString +" " +yearInput), page.locator(datepickerTitle).textContent());  ?
+//        String escapedHTML = StringEscapeUtils.unescapeHtml4(page.locator(datepickerTitle).textContent()); ? decodare html
+//        assertEquals((monthInputAtString +" " +yearInput), escapedHTML);
         return this;
     }
 

@@ -4,9 +4,11 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_scouse.An;
 import page.*;
 
 public class Steps {
@@ -16,6 +18,7 @@ public class Steps {
     AlertsPage alertsPage;
     LoginPage loginPage;
     DatePickerPage datePickerPage;
+    YouTubePage youTubePage;
 
     Playwright playwright = Playwright.create();
     BrowserType chrome = playwright.chromium();
@@ -31,6 +34,7 @@ public class Steps {
         alertsPage = new AlertsPage(page);
         loginPage = new LoginPage(page);
         datePickerPage = new DatePickerPage(page);
+        youTubePage = new YouTubePage(page);
     }
 
     @When("User complete all the fields with data: {string}, {string}, {string}, {string}")
@@ -42,7 +46,6 @@ public class Steps {
     public void userClickOnSubmitButton() {
         textBoxPage.clickOnSubmitButton();
     }
-
 
     @When("User choose a value from dropdown with number {string}")
     public void userChooseValueDropdown(String numberValue) {
@@ -88,6 +91,26 @@ public class Steps {
     @And("User select a day {int}")
     public void selectDay(int day) {
         datePickerPage.selectDay(day);
+    }
+
+    @An("User click on YouTube dialog box")
+    public void clickDialogYT() throws InterruptedException {
+        youTubePage.userClickOnDialog();
+    }
+
+    @And("User type {string} in the search box")
+    public void typeValueAndSearch(String text){
+        youTubePage.userTypeValueOnSearchBox(text);
+    }
+
+    @And("User click on search box")
+    public void clickOnSearch() throws InterruptedException {
+        youTubePage.userClickOnSearchButton();
+    }
+
+    @And("User click on second page")
+    public void clickOnSecondPage() throws InterruptedException {
+        youTubePage.clickOnSecondPage();
     }
 
 }
